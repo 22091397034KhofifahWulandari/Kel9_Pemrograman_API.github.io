@@ -27,7 +27,7 @@ Berikut tampilan dokumentasi OpenApi pada project “data sekolah”
 
 1.	path
 
-![image](https://github.com/22091397034KhofifahWulandari/Kel9_Pemrograman_API.github.io/assets/124429174/571f285d-41cf-49f4-a0ce-77dffad155b1)
+![image](https://github.com/22091397034KhofifahWulandari/Kel9_Pemrograman_API.github.io/assets/124429174/9b8f18d1-fa14-488d-bf25-554575049b5f)
 
 2.	Post
 
