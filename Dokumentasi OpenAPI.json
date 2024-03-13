@@ -1,0 +1,166 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Data Sekolah API",
+    "version": "1.0",
+    "description": "API untuk mengelola data siswa di sekolah"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:50"
+    }
+  ],
+  "paths": {
+    "/siswa": {
+      "get": {
+        "summary": "Get daftar semua siswa",
+        "operationId": "getSiswaList",
+        "responses": {
+          "200": {
+            "description": "Daftar semua siswa"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Tambahkan siswa baru",
+        "operationId": "addNewSiswa",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Siswa"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Data siswa berhasil ditambahkan"
+          },
+          "400": {
+            "description": "Salah satu atau lebih field tidak lengkap"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/siswa/details": {
+      "get": {
+        "summary": "Dapatkan detail siswa berdasarkan ID",
+        "operationId": "getSiswaDetails",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detail siswa"
+          },
+          "400": {
+            "description": "ID tidak diberikan"
+          }
+        }
+      }
+    },
+    "/siswa/edit": {
+      "put": {
+        "summary": "Edit data siswa berdasarkan ID",
+        "operationId": "editSiswa",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Siswa"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Data siswa berhasil diperbarui"
+          },
+          "400": {
+            "description": "ID tidak diberikan atau salah satu atau lebih field tidak lengkap"
+          }
+        }
+      }
+    },
+    "/siswa/delete": {
+      "delete": {
+        "summary": "Hapus data siswa berdasarkan ID",
+        "operationId": "deleteSiswa",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data siswa berhasil dihapus"
+          },
+          "400": {
+            "description": "ID tidak diberikan"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Siswa": {
+        "type": "object",
+        "properties": {
+          "nama": {
+            "type": "string"
+          },
+          "umur": {
+            "type": "integer"
+          },
+          "kelas": {
+            "type": "string"
+          }
+        },
+        "required": ["nama", "umur", "kelas"]
+      }
+    },
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "api_key"
+      }
+    }
+  }
+}
